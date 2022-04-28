@@ -18,7 +18,7 @@ class GetSource:
         try:
             src = requests.get(self.url, headers=header) #sends request for img with custom user agent 
             session_header = src.headers
-            print(session_header['Content-Type'])
+            
             if session_header['Content-Type'] not in('image/jpeg', 'image/png'): #if an image is not passed in redirect to a 404.png
                 src = requests.get('https://i.stack.imgur.com/6M513.png', headers=header)
             
