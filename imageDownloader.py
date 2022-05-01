@@ -4,6 +4,9 @@ import os.path #merging, normalizing and retrieving path names in python
 # By Mikhailgov Lmao 2022-04-28
 # bad image downloader that relies on external libaries
 # **********************************************************************
+
+# TODO add better error handling/messages instead of sys exits and defult images
+
 class GetSource:
     """downloads image file to a predetermined save path by passing in an image url"""
     

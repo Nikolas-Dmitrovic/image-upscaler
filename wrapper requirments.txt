@@ -1,0 +1,26 @@
+supported formats list/check
+
+
+check if binaries are in the proper 
+
+create general error handler class
+create engine specific error handlers
+create error log insted of killing program
+
+create prep funcs to ensure files are in proper format for best preformace
+
+create save funcs
+
+run binaries with subprocess
+
+create clean up funcs to delete images after they are done being used
+
+
+upscale class
+
+init vars - binary location
+run
+save
+run and save
+
+run {upscale engine}
