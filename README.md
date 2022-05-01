@@ -1,2 +1,3 @@
 # image-upscaler
-## discord bot that can reverse a binary tree and create linked lists
+## discord bot For image upscaling using waifu2x api
+additional fun features includes random anime images, linked list and binary search trees visualization etc.
