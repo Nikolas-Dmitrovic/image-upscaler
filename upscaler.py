@@ -151,8 +151,54 @@ class esgran(upscaler):
     def __init__(self, Binary_location=None) -> None:
         super().__init__(Binary_location)
 
-    def run(self):
-        pass
+    def run(self, 
+        file_location, 
+        save_location,
+        # noise_level = 0, # defult value for algorithm 
+        scale = 4, # defult value for algorithm 
+        tile_size = None,
+        model_path = "models",
+        model_name = "realesr-animevideov3",
+        gpu_id = None,
+        load_proc_save = None,
+        tta_mode = False,
+        output_format = "png"):
+
+        if file_location == None: return 1
+        if self.file_type(file_location) not in self.supported_file_types(): return 2
+        self.file_input = file_location
+        self.save_location = save_location
+
+
+        command = []
+        # TODO add checks to see if file paths are valid
+        command += (self.binary_location, "-n", file_location, "-o", save_location)
+        
+        algorithms_scales = [2,3,4]
+
+        if scale != 4 and scale in algorithms_scales: command+=("-s", scale)
+        if scale not in algorithms_scales: return # throw error
+
+        if tile_size != None: return #throw error if it is anything other than none
+
+        algorithms_models = ["realesr-animevideov3","realesr-animevideov3","realesrgan-x4plus","realesrgan-x4plus-anime","realesrnet-x4plus"]
+
+        if model_name != "algorithms_models" and model_name in algorithms_models: command += ("-n", model_name)
+        if model_name not in algorithms_models: return # call error
+
+        if gpu_id != None: return #throw error if it is anything other than none
+        if load_proc_save != None: return #throw error if it is anything other than none
+        if tta_mode != None: return #throw error if it is anything other than none
+
+        output_formats = ["jpg", "png", "webp"]
+
+        if output_format != "png" and output_format in output_formats: command += ("-f", format)
+
+        try:
+            process = subprocess.Popen(command, **self.subprocess_args())
+        except:
+            #TODO add error handling
+            pass
 
 class cugan(upscaler):
     def __init__(self, Binary_location=None) -> None:
